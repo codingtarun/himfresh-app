@@ -1,0 +1,9 @@
+.btn-primary {
+  background-color: $clr-primary-200 !important; /* New background color */
+  border-color: $clr-primary-200 !important; /* New border color */
+}
+
+.btn-primary:hover {
+  background-color: $clr-primary-100 !important; /* Darker shade on hover */
+  border-color: $clr-primary-100 !important; /* Darker border color on hover */
+}

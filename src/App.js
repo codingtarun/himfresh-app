@@ -10,6 +10,7 @@ import { USER_LIST } from "./data";
 // Assets
 import "./sass/App.scss";
 import { useState } from "react";
+import { Login } from "./components/login/Login";
 
 function App() {
   const [heading, setHeading] = useState("Himfresh App");
@@ -22,19 +23,14 @@ function App() {
       <Content>
         <h2 className="text-center">{heading}</h2>
         <Row>
-          <div className="col-6 col-sm-3">
-            <Card handleClick={updateHeading} {...USER_LIST[0]} />
-          </div>
-          <div className="col-6 col-sm-3">
-            <Card handleClick={updateHeading} {...USER_LIST[1]} />
-          </div>
-          <div className="col-6 col-sm-3">
-            <Card handleClick={updateHeading} {...USER_LIST[2]} />
-          </div>
-          <div className="col-6 col-sm-3">
-            <Card handleClick={updateHeading} {...USER_LIST[3]} />
-          </div>
+          {USER_LIST.map((user) => (
+            <div className="col-6 col-sm-4 col-md-3 mb-3">
+              <Card key={user.id} handleClick={updateHeading} {...user} />
+            </div>
+          ))}
         </Row>
+        <hr />
+        <Login></Login>
       </Content>
     </>
   );
