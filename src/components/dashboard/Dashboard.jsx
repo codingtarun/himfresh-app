@@ -1,7 +1,7 @@
-export const Dashboard = () => {
+export const Dashboard = ({ ...props }) => {
   return (
-    <div className="dashboard">
-      <div className="main-content min-vh-100">EVERYTHING GOES HERE</div>
+    <div className="dashboard" {...props}>
+      <div className="main-content min-vh-100">DASHBOARD</div>
       <nav className="main-nav">
         <ul className="main-nav__list">
           <li className="main-nav__list-item">

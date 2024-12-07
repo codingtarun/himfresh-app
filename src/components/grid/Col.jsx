@@ -1,3 +1,3 @@
-export const Col = ({ children, variant }) => {
-  return <div className={variant}>{children}</div>;
+export const Col = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };

@@ -4,6 +4,7 @@ import { Login } from "./components/login/Login";
 import { Profile } from "./components/profile/Profile";
 import { Register } from "./components/register/Register";
 import { Dashboard } from "./components/dashboard/Dashboard";
+import { TicTacToe } from "./components/tic-tac-toe/TicTacToe";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Profile></Profile>
         <Login></Login>
         <Register></Register>
-        <Dashboard></Dashboard>
+        <Dashboard id="dashboard"></Dashboard>
+        <TicTacToe></TicTacToe>
       </Content>
     </>
   );

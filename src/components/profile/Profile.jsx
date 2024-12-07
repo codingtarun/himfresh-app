@@ -14,7 +14,7 @@ export const Profile = () => {
       <h2 className="text-center">{heading}</h2>
       <Row>
         {USER_LIST.map((user) => (
-          <Col variant="col-6 col-sm-4 col-md-3 mb-3">
+          <Col className="col-6 col-sm-4 col-md-3 mb-3">
             <Card key={user.id} handleClick={updateHeading} {...user} />
           </Col>
         ))}

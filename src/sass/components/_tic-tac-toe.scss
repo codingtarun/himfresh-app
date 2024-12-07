@@ -1,0 +1,77 @@
+#tic-tac-toe {
+  & .card {
+    background-color: $clr-grey-900;
+    color: $clr-bg-100;
+    width: 40%;
+  }
+}
+.tic-tac-toe {
+  &__box {
+    display: grid;
+    grid-template-columns: repeat(3, 8rem); /* 3 columns of 100px each */
+    grid-template-rows: repeat(3, 8rem); /* 3 rows of 100px each */
+    justify-content: center;
+    margin: 4rem 0;
+    &--grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 8rem;
+      font-weight: lighter;
+      &-1 {
+        border-right: 2px solid $clr-bg-100;
+        border-bottom: 2px solid $clr-bg-100;
+      }
+      &-2 {
+        border-left: 2px solid $clr-bg-100;
+        border-right: 2px solid $clr-bg-100;
+        border-bottom: 2px solid $clr-bg-100;
+      }
+      &-3 {
+        border-left: 2px solid $clr-bg-100;
+        border-bottom: 2px solid $clr-bg-100;
+      }
+      &-4 {
+        border-top: 2px solid $clr-bg-100;
+        border-right: 2px solid $clr-bg-100;
+        border-bottom: 2px solid $clr-bg-100;
+      }
+      &-5 {
+        border: 2px solid $clr-bg-100;
+      }
+      &-6 {
+        border-top: 2px solid $clr-bg-100;
+        border-left: 2px solid $clr-bg-100;
+        border-bottom: 2px solid $clr-bg-100;
+      }
+      &-7 {
+        border-top: 2px solid $clr-bg-100;
+        border-right: 2px solid $clr-bg-100;
+      }
+      &-8 {
+        border-left: 2px solid $clr-bg-100;
+        border-right: 2px solid $clr-bg-100;
+        border-top: 2px solid $clr-bg-100;
+      }
+      &-9 {
+        border-left: 2px solid $clr-bg-100;
+        border-top: 2px solid $clr-bg-100;
+      }
+    }
+  }
+}
+.X:hover {
+  background-color: #22e39f;
+  color: #fff;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><text x="0" y="96" font-size="128" fill="black" font-family="Arial">X</text></svg>')
+      64 64,
+    auto;
+}
+.O:hover {
+  background-color: #22e39f;
+  color: #fff;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><text x="0" y="96" font-size="128" fill="black" font-family="Arial">O</text></svg>')
+      64 64,
+    auto;
+}
