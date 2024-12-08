@@ -13,8 +13,8 @@ export const Profile = () => {
     <div className="min-vh-100 d-flex flex-column justify-content-center">
       <h2 className="text-center">{heading}</h2>
       <Row>
-        {USER_LIST.map((user) => (
-          <Col className="col-6 col-sm-4 col-md-3 mb-3">
+        {USER_LIST.map((user, userIndex) => (
+          <Col className="col-6 col-sm-4 col-md-3 mb-3" key={userIndex}>
             <Card key={user.id} handleClick={updateHeading} {...user} />
           </Col>
         ))}

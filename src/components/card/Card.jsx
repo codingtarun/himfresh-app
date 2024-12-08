@@ -2,13 +2,13 @@ import "./card.scss";
 
 export const Card = ({ name, about, image, profile_link, handleClick }) => {
   return (
-    <div class="card">
-      <img src={image} class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">{name}</h5>
-        <p class="card-text">{about}</p>
+    <div className="card">
+      <img src={image} className="card-img-top" alt="..." />
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">{about}</p>
         <div className="btn btn-group w-100">
-          <a href={profile_link} class="btn btn-primary">
+          <a href={profile_link} className="btn btn-primary">
             Visit website
           </a>
           <button

@@ -6,7 +6,7 @@ export const Dashboard = ({ ...props }) => {
         <ul className="main-nav__list">
           <li className="main-nav__list-item">
             <a href="http://" className="main-nav-list-item-link">
-              <i class="fa-solid fa-house"></i>
+              <i className="fa-solid fa-house"></i>
             </a>
           </li>
           <li className="main-nav__list-item">
@@ -33,7 +33,7 @@ export const Dashboard = ({ ...props }) => {
         <div className="main-nav__link link-logout">
           <a href="http://" className="d-block">
             Logout{" "}
-            <i class="fa-solid fa-arrow-right logout-icon ms-1 fw-bold"></i>
+            <i className="fa-solid fa-arrow-right logout-icon ms-1 fw-bold"></i>
           </a>
         </div>
       </nav>
