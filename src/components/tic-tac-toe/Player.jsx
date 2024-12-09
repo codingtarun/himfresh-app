@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Player = ({ name, symbol, isActive }) => {
+export const Player = ({ name, isActive, symbol }) => {
   const [edit, setEdit] = useState(false);
   const [playerName, setPlayerName] = useState(name);
   function handleEditToggle() {
@@ -13,7 +13,7 @@ export const Player = ({ name, symbol, isActive }) => {
 
   return (
     <div className="col-6">
-      <div className="input-group mb-3">
+      <div className={`input-group mb-3 ${isActive ? "active-player" : ""}`}>
         <span className="input-group-text" onClick={handleEditToggle}>
           {edit ? (
             <i className="fa-solid fa-floppy-disk"></i>
@@ -29,7 +29,9 @@ export const Player = ({ name, symbol, isActive }) => {
           disabled={!edit}
           onChange={handlePlayerNameChange}
         />
-        <span className="input-group-text fw-bold">{symbol}</span>
+        <span className="input-group-text fw-bold">
+          {symbol} {isActive}
+        </span>
       </div>
     </div>
   );

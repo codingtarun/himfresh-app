@@ -1,22 +1,36 @@
 import { useState } from "react";
+import { GameBoard } from "./GameBoard";
 import { Player } from "./Player";
+import { StepLog } from "./StepLog";
 
 const initialGameBoard = [null, null, null, null, null, null, null, null, null];
 
 export const TicTacToe = () => {
+  const [stepLog, setStepLog] = useState([]);
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
-  const [activePlayerSymbol, setActivePlayerSymbol] = useState("O");
-  function handleCellUpdate(cellIndex) {
+  const [activePlayer, setActivePlayer] = useState("X");
+
+  function handleCellClick(cellIndex) {
+    // When we click a cell we are doing following actions
+
+    //1. Toggle active player
+    setActivePlayer((currentActivePlayer) =>
+      currentActivePlayer === "X" ? "O" : "X"
+    );
+    //2. Updating the game board
     setGameBoard((gameBoard) => {
       const shadowBoard = [...gameBoard];
-      shadowBoard[cellIndex] = activePlayerSymbol;
+      shadowBoard[cellIndex] = activePlayer;
       return shadowBoard;
     });
-    if (activePlayerSymbol === "X") {
-      setActivePlayerSymbol("O");
-    } else {
-      setActivePlayerSymbol("X");
-    }
+    //3. Updating the step log
+    setStepLog((previousStepLog) => {
+      const updatedStepLog = [
+        `Player ${activePlayer} clicked cell no ${cellIndex + 1}`,
+        ...previousStepLog,
+      ];
+      return updatedStepLog;
+    });
   }
   return (
     <div
@@ -29,19 +43,22 @@ export const TicTacToe = () => {
             Tic-Tac-Toe
           </h5>
           <div className="row text-center my-3">
-            <Player name="Player 1" symbol="O" isActive={true}></Player>
-            <Player name="Player 2" symbol="X" isActive={false}></Player>
-          </div>
-          <div className="tic-tac-toe__box mb-3">
-            {gameBoard.map((cell, cellIndex) => (
-              <div
-                key={cellIndex}
-                className={`tic-tac-toe__box--grid ${activePlayerSymbol}`}
-                onClick={() => handleCellUpdate(cellIndex)}
-              >
-                {cell}
-              </div>
-            ))}
+            <Player
+              name="Player 1"
+              symbol="X"
+              isActive={activePlayer === "X"}
+            ></Player>
+            <Player
+              name="Player 2"
+              symbol="O"
+              isActive={activePlayer === "O"}
+            ></Player>
+            <GameBoard
+              activePlayer={activePlayer}
+              handleCellClick={handleCellClick}
+              gameBoard={gameBoard}
+            ></GameBoard>
+            <StepLog stepLog={stepLog}></StepLog>
           </div>
         </div>
       </div>
