@@ -4,11 +4,40 @@ import { Player } from "./Player";
 import { StepLog } from "./StepLog";
 
 const initialGameBoard = [null, null, null, null, null, null, null, null, null];
+const winningCombination = [
+  // Horizontal Rows (already included for X and O)
+  ["X", "X", "X", null, null, null, null, null, null],
+  [null, null, null, "X", "X", "X", null, null, null],
+  [null, null, null, null, null, null, "X", "X", "X"],
+  ["X", null, null, null, "X", null, null, null, "X"],
+  [null, null, "X", null, "X", null, "X", null, null],
+  ["X", null, null, "X", null, null, "X", null, null],
+  [null, "X", null, null, "X", null, null, "X", null],
+  [null, null, "X", null, null, "X", null, null, "X"],
+
+  ["O", null, null, null, "O", null, null, null, "O"],
+  [null, null, "O", null, "O", null, "O", null, null],
+  ["O", "O", "O", null, null, null, null, null, null],
+  [null, null, null, "O", "O", "O", null, null, null],
+  [null, null, null, null, null, null, "O", "O", "O"],
+  ["O", null, null, "O", null, null, "O", null, null],
+  [null, "O", null, null, "O", null, null, "O", null],
+  [null, null, "O", null, null, "O", null, null, "O"],
+];
 
 export const TicTacToe = () => {
   const [stepLog, setStepLog] = useState([]);
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   const [activePlayer, setActivePlayer] = useState("X");
+  const [winner, setWinner] = useState(null);
+
+  const checkCombination = (playerArray) => {
+    return winningCombination.some((pattern) => {
+      return pattern.every(
+        (value, index) => value === null || value === playerArray[index]
+      );
+    });
+  };
 
   function handleCellClick(cellIndex) {
     // When we click a cell we are doing following actions
@@ -17,12 +46,18 @@ export const TicTacToe = () => {
     setActivePlayer((currentActivePlayer) =>
       currentActivePlayer === "X" ? "O" : "X"
     );
+
     //2. Updating the game board
     setGameBoard((gameBoard) => {
       const shadowBoard = [...gameBoard];
       shadowBoard[cellIndex] = activePlayer;
+      if (checkCombination(shadowBoard)) {
+        // Checking for winner after every step
+        setWinner(activePlayer);
+      }
       return shadowBoard;
     });
+
     //3. Updating the step log
     setStepLog((previousStepLog) => {
       const updatedStepLog = [
@@ -31,6 +66,11 @@ export const TicTacToe = () => {
       ];
       return updatedStepLog;
     });
+  }
+
+  function resetGame() {
+    setGameBoard(initialGameBoard);
+    setWinner(null);
   }
   return (
     <div
@@ -57,6 +97,8 @@ export const TicTacToe = () => {
               activePlayer={activePlayer}
               handleCellClick={handleCellClick}
               gameBoard={gameBoard}
+              winner={winner}
+              resetGame={resetGame}
             ></GameBoard>
             <StepLog stepLog={stepLog}></StepLog>
           </div>
