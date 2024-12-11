@@ -36,10 +36,10 @@ export const GameBoard = ({
         </h2>
         <div className="btn-group mb-3">
           <button className="btn btn-outline-primary">
-            <i class="fas fa-pause"></i>
+            <i className="fas fa-pause"></i>
           </button>
           <button className="btn btn-outline-secondary" onClick={resetGame}>
-            <i class="fas fa-redo-alt"></i>
+            <i className="fas fa-redo-alt"></i>
           </button>
         </div>
       </div>

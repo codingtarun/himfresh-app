@@ -1,4 +1,45 @@
+import { useState } from "react";
+
 export const Investment = () => {
+  const [userInput, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+  });
+  const result = calculateResults({ ...userInput });
+  function handleInputChange(inputIdentifier, value) {
+    console.log(userInput);
+    setUserInput((previousUserInput) => {
+      return {
+        ...previousUserInput,
+        [inputIdentifier]: Number(value),
+      };
+    });
+    // setResult(calculateResults({ ...userInput }));
+  }
+
+  function calculateResults({
+    initialInvestment,
+    annualInvestment,
+    expectedReturn,
+    duration,
+  }) {
+    const annualData = [];
+    let investmentValue = initialInvestment;
+
+    for (let i = 0; i < duration; i++) {
+      const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+      investmentValue += interestEarnedInYear + annualInvestment;
+      annualData.push({
+        year: i + 1, // year identifier
+        interest: interestEarnedInYear, // the amount of interest earned in this year
+        valueEndOfYear: investmentValue, // investment value at end of year
+        annualInvestment: annualInvestment, // investment added in this year
+      });
+    }
+    return annualData;
+  }
   return (
     <div
       id="investment"
@@ -6,49 +47,69 @@ export const Investment = () => {
     >
       <h2 className="text-center mb-3">Investment Calculator</h2>
       <div
-        class="card border-0 shadow mb-4 py-2 px-1"
+        className="card border-0 shadow mb-4 py-2 px-1"
         style={{ width: "60rem", backgroundColor: "#191919", color: "#fff" }}
       >
-        <div class="card-body">
+        <div className="card-body">
           <form>
             <div className="row">
               <div className="col-6">
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <label for="inputInitialInvestment">Initial Investment</label>
                   <input
                     type="number"
-                    class="form-control"
+                    className="form-control"
                     id="inputInitialInvestment"
+                    required
+                    onChange={(event) =>
+                      handleInputChange("initialInvestment", event.target.value)
+                    }
+                    value={userInput.initialInvestment}
                   />
                 </div>
               </div>
               <div className="col-6">
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <label for="inputAnnualInvestment">Annual Investment</label>
                   <input
                     type="number"
-                    class="form-control"
+                    className="form-control"
                     id="inputAnnualInvestment"
+                    required
+                    onChange={(event) =>
+                      handleInputChange("annualInvestment", event.target.value)
+                    }
+                    value={userInput.annualInvestment}
                   />
                 </div>
               </div>
               <div className="col-6">
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <label for="inputExpectedReturn">Expected Return</label>
                   <input
                     type="number"
-                    class="form-control"
+                    className="form-control"
                     id="inputExpectedReturn"
+                    required
+                    onChange={(event) =>
+                      handleInputChange("expectedReturn", event.target.value)
+                    }
+                    value={userInput.expectedReturn}
                   />
                 </div>
               </div>
               <div className="col-6">
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <label for="inputDuration">Duration</label>
                   <input
                     type="number"
-                    class="form-control"
+                    className="form-control"
                     id="inputDuration"
+                    required
+                    onChange={(event) =>
+                      handleInputChange("duration", event.target.value)
+                    }
+                    value={userInput.duration}
                   />
                 </div>
               </div>
@@ -57,11 +118,11 @@ export const Investment = () => {
         </div>
       </div>
       <div
-        class="card border-0 shadow mb-3"
+        className="card border-0 shadow mb-3"
         style={{ width: "60rem", backgroundColor: "#191919", color: "#fff" }}
       >
-        <div class="card-body">
-          <table class="table table-sm" style={{ color: "#fff" }}>
+        <div className="card-body">
+          <table className="table table-sm" style={{ color: "#fff" }}>
             <thead>
               <tr>
                 <th scope="col">Years</th>
@@ -72,76 +133,17 @@ export const Investment = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Mark</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">7</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">8</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">9</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">10</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-              </tr>
+              {result.map((yearData) => {
+                return (
+                  <tr key={yearData.year}>
+                    <th scope="row">{yearData.year}</th>
+                    <td>{yearData.initialInvestment}</td>
+                    <td>{yearData.interest}</td>
+                    <td>{yearData.annualInvestment}</td>
+                    <td>{yearData.valueEndOfYear}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
