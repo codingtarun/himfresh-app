@@ -2,44 +2,42 @@ import { useState } from "react";
 
 export const Investment = () => {
   const [userInput, setUserInput] = useState({
-    year: 1,
-    plants: 50,
-    fruits: 30,
-    weight: 10,
-    boxes: 1,
-    totalInvestment: 10000,
-    perPlantCost: 2000,
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
   });
-
-  const result = calculateResult({ ...userInput });
-
-  function handleUserInput(inputIdentifier, value) {
-    setUserInput((oldData) => {
+  const result = calculateResults({ ...userInput });
+  function handleInputChange(inputIdentifier, value) {
+    console.log(userInput);
+    setUserInput((previousUserInput) => {
       return {
-        ...oldData,
+        ...previousUserInput,
         [inputIdentifier]: Number(value),
       };
     });
   }
 
-  function calculateResult({ year, plants, totalInvestment }) {
-    const finalData = [];
-    for (let i = 1; i <= year; i++) {
-      const p = plants * i; // Define variables for reusable values
-      const f = 30 * plants * i;
-      const totalInvestment = 10000 * i;
+  function calculateResults({
+    initialInvestment,
+    annualInvestment,
+    expectedReturn,
+    duration,
+  }) {
+    const annualData = [];
+    let investmentValue = initialInvestment;
 
-      finalData.push({
-        year: i,
-        plants: p,
-        fruits: f,
-        weight: 30 * 1.5,
-        boxes: f / 50, // Use the variable here
-        totalInvestment: totalInvestment,
-        perPlantCost: totalInvestment / plants, // Use variables for clarity
+    for (let i = 0; i < duration; i++) {
+      const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+      investmentValue += interestEarnedInYear + annualInvestment;
+      annualData.push({
+        year: i + 1, // year identifier
+        interest: interestEarnedInYear, // the amount of interest earned in this year
+        valueEndOfYear: investmentValue, // investment value at end of year
+        annualInvestment: annualInvestment, // investment added in this year
       });
     }
-    return finalData;
+    return annualData;
   }
   return (
     <div
@@ -56,48 +54,46 @@ export const Investment = () => {
             <div className="row">
               <div className="col-6">
                 <div className="form-group mb-3">
-                  <label for="inputNoOfYears">
-                    No of Years(Start from plantation year)
-                  </label>
+                  <label for="inputInitialInvestment">Initial Investment</label>
                   <input
                     type="number"
                     className="form-control"
-                    id="inputNumberOfYears"
+                    id="inputInitialInvestment"
                     required
-                    value={userInput.year}
                     onChange={(event) =>
-                      handleUserInput("year", event.target.value)
+                      handleInputChange("initialInvestment", event.target.value)
                     }
+                    value={userInput.initialInvestment}
                   />
                 </div>
               </div>
               <div className="col-6">
                 <div className="form-group mb-3">
-                  <label for="inputNoOfPlants">No. of plants</label>
+                  <label for="inputAnnualInvestment">Annual Investment</label>
                   <input
                     type="number"
                     className="form-control"
-                    id="inputNoOfPlants"
+                    id="inputAnnualInvestment"
                     required
-                    value={userInput.plants}
                     onChange={(event) =>
-                      handleUserInput("plants", event.target.value)
+                      handleInputChange("annualInvestment", event.target.value)
                     }
+                    value={userInput.annualInvestment}
                   />
                 </div>
               </div>
               <div className="col-6">
                 <div className="form-group mb-3">
-                  <label for="inputTotalInvestment">Total Investment</label>
+                  <label for="inputExpectedReturn">Expected Return</label>
                   <input
                     type="number"
                     className="form-control"
-                    id="inputTotalInvestment"
+                    id="inputExpectedReturn"
                     required
-                    value={userInput.totalInvestment}
                     onChange={(event) =>
-                      handleUserInput("totalInvestment", event.target.value)
+                      handleInputChange("expectedReturn", event.target.value)
                     }
+                    value={userInput.expectedReturn}
                   />
                 </div>
               </div>
@@ -109,6 +105,10 @@ export const Investment = () => {
                     className="form-control"
                     id="inputDuration"
                     required
+                    onChange={(event) =>
+                      handleInputChange("duration", event.target.value)
+                    }
+                    value={userInput.duration}
                   />
                 </div>
               </div>
@@ -126,24 +126,20 @@ export const Investment = () => {
               <tr>
                 <th scope="col">Year</th>
                 <th scope="col">Plants</th>
-                <th scope="col">Total Project Cost</th>
-                <th scope="col">Per Plant Cost</th>
                 <th scope="col">Fruits</th>
                 <th scope="col">Weight</th>
                 <th scope="col">Boxes</th>
               </tr>
             </thead>
             <tbody>
-              {result.map((plant) => {
+              {result.map((yearData) => {
                 return (
-                  <tr key={plant.year}>
-                    <th scope="row">{plant.year}</th>
-                    <th>{plant.plants}</th>
-                    <th>{plant.totalInvestment}</th>
-                    <th>{plant.perPlantCost}</th>
-                    <td>{plant.fruits}</td>
-                    <td>{plant.weight}</td>
-                    <td>{plant.boxes}</td>
+                  <tr key={yearData.year}>
+                    <th scope="row">{yearData.year}</th>
+                    <td>{yearData.initialInvestment}</td>
+                    <td>{yearData.interest}</td>
+                    <td>{yearData.annualInvestment}</td>
+                    <td>{yearData.valueEndOfYear}</td>
                   </tr>
                 );
               })}

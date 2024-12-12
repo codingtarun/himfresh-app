@@ -6,6 +6,7 @@ import { Register } from "./components/register/Register";
 import { Dashboard } from "./components/dashboard/Dashboard";
 import { TicTacToe } from "./components/tic-tac-toe/TicTacToe";
 import { Investment } from "./components/investment/Investment";
+import { ProjectManager } from "./components/projectmanager/ProjectManager";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Dashboard id="dashboard"></Dashboard>
         <TicTacToe></TicTacToe>
         <Investment></Investment>
+        <ProjectManager></ProjectManager>
       </Content>
     </>
   );
