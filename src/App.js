@@ -7,10 +7,13 @@ import { Dashboard } from "./components/dashboard/Dashboard";
 import { TicTacToe } from "./components/tic-tac-toe/TicTacToe";
 import { Investment } from "./components/investment/Investment";
 import { ProjectManager } from "./components/projectmanager/ProjectManager";
+import { Navbar } from "./components/navbar/Navbar";
+import { Timer } from "./components/timer/Timer";
 
 function App() {
   return (
     <>
+      <Navbar></Navbar>
       <Content>
         <Profile></Profile>
         <Login></Login>
@@ -18,7 +21,8 @@ function App() {
         <Dashboard id="dashboard"></Dashboard>
         <TicTacToe></TicTacToe>
         <Investment></Investment>
-        <ProjectManager></ProjectManager>
+        <Timer></Timer>
+        {/* <ProjectManager></ProjectManager> */}
       </Content>
     </>
   );

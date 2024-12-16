@@ -10,11 +10,14 @@ export const Profile = () => {
     setHeading(name);
   }
   return (
-    <div className="min-vh-100 d-flex flex-column justify-content-center">
+    <div
+      className="min-vh-100 d-flex flex-column justify-content-center"
+      id="profile"
+    >
       <h2 className="text-center">{heading}</h2>
       <Row>
         {USER_LIST.map((user, userIndex) => (
-          <Col className="col-6 col-sm-4 col-md-3 mb-3" key={userIndex}>
+          <Col className="col-6 col-sm-6 col-md-3 mb-3" key={userIndex}>
             <Card key={user.id} handleClick={updateHeading} {...user} />
           </Col>
         ))}

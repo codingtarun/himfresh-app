@@ -44,12 +44,12 @@ export const Investment = () => {
   return (
     <div
       id="investment"
-      className="d-flex align-items-center flex-column min-vh-100 w-100 py-4"
+      className="d-flex align-items-center flex-column min-vh-100 py-4"
     >
       <h2 className="text-center mb-3">Investment Calculator</h2>
       <div
         className="card border-0 shadow mb-4 py-2 px-1"
-        style={{ width: "60rem", backgroundColor: "#191919", color: "#fff" }}
+        style={{ backgroundColor: "#191919", color: "#fff" }}
       >
         <div className="card-body">
           <form>
@@ -118,7 +118,7 @@ export const Investment = () => {
       </div>
       <div
         className="card border-0 shadow mb-3"
-        style={{ width: "60rem", backgroundColor: "#191919", color: "#fff" }}
+        style={{ backgroundColor: "#191919", color: "#fff" }}
       >
         <div className="card-body">
           <table className="table table-sm" style={{ color: "#fff" }}>
