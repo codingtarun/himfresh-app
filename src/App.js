@@ -9,12 +9,14 @@ import { Investment } from "./components/investment/Investment";
 import { ProjectManager } from "./components/projectmanager/ProjectManager";
 import { Navbar } from "./components/navbar/Navbar";
 import { Timer } from "./components/timer/Timer";
+import { User } from "./components/user/User";
 
 function App() {
   return (
     <>
       <Navbar></Navbar>
       <Content>
+        <User></User>
         <Profile></Profile>
         <Login></Login>
         <Register></Register>
