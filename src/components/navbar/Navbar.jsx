@@ -5,7 +5,7 @@ export const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             {title}
           </a>
           <button
@@ -26,11 +26,6 @@ export const Navbar = () => {
                   Home
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -44,37 +39,37 @@ export const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a className="dropdown-item" href="#profile">
+                    <a className="dropdown-item" href="/profile">
                       Profile
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#login">
+                    <a className="dropdown-item" href="/login">
                       Login
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#register">
+                    <a className="dropdown-item" href="/register">
                       Register
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#dashboard">
+                    <a className="dropdown-item" href="/dashboard">
                       Dashboard
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#tic-tac-toe">
+                    <a className="dropdown-item" href="/tic-tac-toe">
                       Tic-tac-toe
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#timer">
+                    <a className="dropdown-item" href="/timer">
                       Timer
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#project-manager">
+                    <a className="dropdown-item" href="/project-manager">
                       Project Manager
                     </a>
                   </li>

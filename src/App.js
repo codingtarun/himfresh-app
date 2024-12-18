@@ -1,5 +1,5 @@
+import { Routes, Route } from "react-router";
 import { Content } from "./components/content/Content";
-import "./sass/App.scss";
 import { Login } from "./components/login/Login";
 import { Profile } from "./components/profile/Profile";
 import { Register } from "./components/register/Register";
@@ -12,21 +12,31 @@ import { Timer } from "./components/timer/Timer";
 import { User } from "./components/user/User";
 import { TaskManger } from "./components/taskmanager/TaskManager";
 
+import "./sass/App.scss";
+
 function App() {
   return (
     <div>
       <Navbar></Navbar>
       <Content>
-        <TaskManger></TaskManger>
-        <User></User>
-        <Profile></Profile>
-        <Login></Login>
-        <Register></Register>
-        <Dashboard id="dashboard"></Dashboard>
-        <TicTacToe></TicTacToe>
-        <Investment></Investment>
-        <Timer></Timer>
-        <ProjectManager></ProjectManager>
+        <Routes>
+          <Route path="/" element={<TaskManger />}></Route>
+          <Route path="/users" element={<User></User>}></Route>
+          <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
+          <Route
+            path="/dashboard"
+            element={<Dashboard id="dashboard"></Dashboard>}
+          ></Route>
+          <Route path="/tic-tac-toe" element={<TicTacToe></TicTacToe>}></Route>
+          <Route path="/investment" element={<Investment></Investment>}></Route>
+          <Route path="/timer" element={<Timer></Timer>}></Route>
+          <Route
+            path="/project-manager"
+            element={<ProjectManager></ProjectManager>}
+          ></Route>
+        </Routes>
       </Content>
     </div>
   );
