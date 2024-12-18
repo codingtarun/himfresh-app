@@ -10,12 +10,14 @@ import { ProjectManager } from "./components/projectmanager/ProjectManager";
 import { Navbar } from "./components/navbar/Navbar";
 import { Timer } from "./components/timer/Timer";
 import { User } from "./components/user/User";
+import { TaskManger } from "./components/taskmanager/TaskManager";
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar></Navbar>
       <Content>
+        <TaskManger></TaskManger>
         <User></User>
         <Profile></Profile>
         <Login></Login>
@@ -24,9 +26,9 @@ function App() {
         <TicTacToe></TicTacToe>
         <Investment></Investment>
         <Timer></Timer>
-        {/* <ProjectManager></ProjectManager> */}
+        <ProjectManager></ProjectManager>
       </Content>
-    </>
+    </div>
   );
 }
 

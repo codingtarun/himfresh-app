@@ -3,7 +3,7 @@ export const Navbar = () => {
   const title = companyList[Math.floor(Math.random() * companyList.length)];
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             {title}

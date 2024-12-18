@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./user.scss";
 
 export function User() {
@@ -7,15 +7,25 @@ export function User() {
   const [url, setUrl] = useState(
     "http://127.0.0.1:8000/api/user/get-all-admin"
   );
-  useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setUsers(data.data.users));
+  const fetchUsers = useCallback(async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setUsers(data.data.users);
   }, [url]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
   return (
     <div id="user">
       <h1>USER LIST</h1>
       <div className="btn-group">
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => setUrl(" http://127.0.0.1:8000/api/user/get-all")}
+        >
+          All Users
+        </button>
         <button
           className="btn btn-outline-secondary btn-sm"
           onClick={() =>
@@ -25,10 +35,20 @@ export function User() {
           Admin
         </button>
         <button
-          className="btn btn-outline-primary btn-sm"
-          onClick={() => setUrl(" http://127.0.0.1:8000/api/user/get-all")}
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() =>
+            setUrl(" http://127.0.0.1:8000/api/user/get-all-huboperator")
+          }
         >
-          All Users
+          Hub Operators
+        </button>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() =>
+            setUrl(" http://127.0.0.1:8000/api/user/get-all-gatekeeper")
+          }
+        >
+          Gate Keepers
         </button>
       </div>
       <table className="table table-sm">
