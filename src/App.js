@@ -7,20 +7,20 @@ import { Dashboard } from "./components/dashboard/Dashboard";
 import { TicTacToe } from "./components/tic-tac-toe/TicTacToe";
 import { Investment } from "./components/investment/Investment";
 import { ProjectManager } from "./components/projectmanager/ProjectManager";
-import { Navbar } from "./components/navbar/Navbar";
 import { Timer } from "./components/timer/Timer";
 import { User } from "./components/user/User";
 import { TaskManger } from "./components/taskmanager/TaskManager";
 
 import "./sass/App.scss";
+import { Menu } from "./components/menu/Menu";
 
 function App() {
   return (
-    <div>
-      <Navbar></Navbar>
+    <>
       <Content>
         <Routes>
-          <Route path="/" element={<TaskManger />}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/taskmanager" element={<TaskManger />}></Route>
           <Route path="/users" element={<User></User>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
@@ -38,7 +38,8 @@ function App() {
           ></Route>
         </Routes>
       </Content>
-    </div>
+      <Menu></Menu>
+    </>
   );
 }
 

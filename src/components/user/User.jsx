@@ -17,8 +17,8 @@ export function User() {
     fetchUsers();
   }, [fetchUsers]);
   return (
-    <div id="user">
-      <h1>USER LIST</h1>
+    <div id="user" className="container pt-4">
+      <h1 className="text-center">USER LIST</h1>
       <div className="btn-group">
         <button
           className="btn btn-outline-secondary btn-sm"

@@ -12,7 +12,7 @@ export const Timer = () => {
     userName.current.value = "";
   }
   return (
-    <div id="timer" className="border-bottom">
+    <div id="timer" className="container mt-4">
       <h1 className="text-center">Timer App</h1>
       <div className="card border-0 shadow-sm my-2">
         <div className="card-body">
