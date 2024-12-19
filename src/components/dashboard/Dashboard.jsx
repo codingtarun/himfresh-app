@@ -78,7 +78,7 @@ export const Dashboard = ({ ...props }) => {
     <div className="container-fluid dashboard py-3">
       <div className="main-content">
         <Row>
-          <div className="col-sm-3" style={{ height: "300px" }}>
+          <div className="col-sm-3 border" style={{ height: "300px" }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart width={500} height={400} data={productSale}>
                 <XAxis />
@@ -91,7 +91,7 @@ export const Dashboard = ({ ...props }) => {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="col-sm-3" style={{ height: "300px" }}>
+          <div className="col-sm-3 border" style={{ height: "300px" }}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart width={400} height={400}>
                 <Pie
@@ -115,7 +115,7 @@ export const Dashboard = ({ ...props }) => {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="col-sm-4" style={{ height: "300px" }}>
+          <div className="col-sm-6 border" style={{ height: "300px" }}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart width={400} height={400}>
                 <Pie

@@ -1,15 +1,9 @@
-import { useState } from "react";
 import "./menu.scss";
 
 import { Link, NavLink } from "react-router";
 
 export const Menu = () => {
-  const [showMenu, setShowMenu] = useState(false);
   const menuItems = [
-    {
-      title: "Home",
-      url: "/",
-    },
     {
       title: "Task",
       url: "/taskmanager",
@@ -30,16 +24,12 @@ export const Menu = () => {
   return (
     <div id="menu">
       <nav className="main-nav">
-        <button className="menu__toggle" onClick={() => setShowMenu(!showMenu)}>
-          {showMenu ? (
-            <i class="fa-solid fa-xmark"></i>
-          ) : (
-            <i class="fa-solid fa-bars"></i>
-          )}
-        </button>
-        <ul
-          className={`${showMenu ? "show-menu" : "hide-menu"} main-nav__list`}
-        >
+        <ul className="main-nav__list">
+          <li className="main-nav__list-item">
+            <NavLink to="/" className="main-nav-list-item-link">
+              <i className="fa-solid fa-house"></i>
+            </NavLink>
+          </li>
           {menuItems.map((menu) => (
             <li className="main-nav__list-item">
               <NavLink to={menu.url} className="main-nav-list-item-link">

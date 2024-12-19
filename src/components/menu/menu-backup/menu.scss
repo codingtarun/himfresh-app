@@ -4,29 +4,7 @@
   & .active {
     background-color: #22e39f;
   }
-  & .hide-menu {
-    display: none !important;
-    width: 0 !important;
-  }
-  & .show-menu {
-    display: flex !important;
-    width: 100% !important;
-  }
   & .main-nav {
-    & .menu__toggle {
-      border: none;
-      outline: none;
-      color: #fff;
-      font-weight: bolder;
-      background-color: transparent;
-      border-radius: 50%;
-      padding: 0.6rem 1rem;
-      background-color: #191919;
-      cursor: pointer;
-      &:hover {
-        background-color: #22e39f;
-      }
-    }
     position: fixed;
     bottom: 0.5rem;
     left: 0.5rem;
@@ -39,7 +17,6 @@
     gap: 2.5rem;
     padding: 0.5rem 0.8rem;
     opacity: 0.8;
-
     &__list {
       display: flex;
       flex-direction: row;
@@ -62,7 +39,6 @@
         transition: all 0.5s;
         text-wrap: nowrap;
         cursor: pointer;
-        transition: all 0.05s ease-in;
       }
       &:hover {
         background-color: #22e39f;
@@ -73,9 +49,6 @@
       & a:visited {
         background-color: #191919;
         cursor: pointer;
-      }
-      & a:hover {
-        background-color: #22e39f;
       }
       & a:hover .logout-icon {
         -webkit-animation: shake-horizontal 0.8s
