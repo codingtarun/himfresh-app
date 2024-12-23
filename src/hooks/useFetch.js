@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-
-export const useFetch = (url) => {
-  const [data, setData] = useState(null);
+import { useState } from "react";
+import { useEffect } from "react";
+export const useFetch = (url, options) => {
+  const [data, setData] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const responce = await fetch(url);
-      const result = await responce.json();
-      setData(result);
-    };
-    fetchData();
+    async function fetchMovies() {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      setData(data.results);
+    }
+    fetchMovies();
   }, [url]);
-  console.log(data);
-  return data;
+
+  return { data };
 };

@@ -26,6 +26,10 @@ export const Menu = () => {
       title: "Timer",
       url: "/timer",
     },
+    {
+      title: "Mobi",
+      url: "/mobi",
+    },
   ];
   return (
     <div id="menu">

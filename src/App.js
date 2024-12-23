@@ -13,6 +13,8 @@ import { TaskManger } from "./components/taskmanager/TaskManager";
 
 import "./sass/App.scss";
 import { Menu } from "./components/menu/Menu";
+import { Mobi } from "./components/mobi/Mobi";
+import { MobiDetails } from "./components/mobi/MobiDetails";
 
 function App() {
   return (
@@ -35,6 +37,28 @@ function App() {
           <Route
             path="/project-manager"
             element={<ProjectManager></ProjectManager>}
+          ></Route>
+          <Route
+            path="/mobi"
+            element={<Mobi api_link="trending/all/day?language=en-US"></Mobi>}
+          ></Route>
+          <Route
+            path="/mobi/movies"
+            element={<Mobi api_link="trending/movie/day?language=en-US"></Mobi>}
+          ></Route>
+          <Route
+            path="/mobi/tv"
+            element={<Mobi api_link="trending/tv/day?language=en-US"></Mobi>}
+          ></Route>
+          <Route
+            path="/mobi/tv/top-rated"
+            element={
+              <Mobi api_link="tv/top_rated?language=en-US&page=1"></Mobi>
+            }
+          ></Route>
+          <Route
+            path="/mobi/details"
+            element={<MobiDetails></MobiDetails>}
           ></Route>
         </Routes>
       </Content>
