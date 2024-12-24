@@ -8,7 +8,6 @@ export const MobiDetails = () => {
       Authorization: ` ${process.env.REACT_APP_TMDB_API_KEY}`,
     },
   };
-  const 
   const { data: movie } = useFetch(link, options);
 
   return (

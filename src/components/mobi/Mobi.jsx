@@ -11,12 +11,14 @@ export const Mobi = ({ api_link }) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: ` ${process.env.REACT_APP_TMDB_API_KEY}`,
+      Authorization: ` ${process.env.REACT_APP_API_KEY}`,
     },
   };
   const link = `https://api.themoviedb.org/3/${api_link}`;
 
   const { data: movies } = useFetch(link, options);
+  console.log(movies);
+
   return (
     <div
       id="mobi"
