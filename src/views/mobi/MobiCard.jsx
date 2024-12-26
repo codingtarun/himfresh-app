@@ -17,7 +17,10 @@ export const MobiCard = ({ movie }) => {
           <p className="card-text">{overview}</p>
         </div>
         <div className="card-footer mt-auto border-0">
-          <Link to={`/mobi/details`} className="btn btn-primary w-100">
+          <Link
+            to={`/mobi/details/${movie.media_type}/${movie.id}`}
+            className="btn btn-primary w-100"
+          >
             View
           </Link>
         </div>

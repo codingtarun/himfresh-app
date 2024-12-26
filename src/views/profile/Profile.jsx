@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Col } from "../grid/Col";
-import { Row } from "../grid/Row";
-import { Card } from "../card/Card";
-import { USER_LIST } from "./../../data";
+import { Col } from "../../components/grid/Col";
+import { Row } from "../../components/grid/Row";
+import { Card } from "../../components/card/Card";
+import { USER_LIST } from "../../data";
 
 export const Profile = () => {
   const [heading, setHeading] = useState("Himfresh App");

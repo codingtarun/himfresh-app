@@ -14,6 +14,7 @@ import {
 import { Alert } from "../../components/alert/Alert";
 import { Row } from "../../components/grid/Row";
 import "./dashboard.scss";
+import { useEffect } from "react";
 
 const productSale = [
   {
@@ -74,6 +75,9 @@ const pieChartDataTwo = [
   { name: "D2", value: 50 },
 ];
 export const Dashboard = ({ ...props }) => {
+  useEffect(() => {
+    document.title = `Himfresh | ${props.title}`;
+  });
   return (
     <div className="container-fluid dashboard py-3">
       <div className="main-content">
