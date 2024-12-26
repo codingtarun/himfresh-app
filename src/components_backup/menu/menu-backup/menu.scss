@@ -1,0 +1,61 @@
+@import "./../abstract/variables";
+
+#menu {
+  & .active {
+    background-color: #22e39f;
+  }
+  & .main-nav {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background-color: #4d4d4d; // #222c;
+    border-radius: 50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0.5rem 0.8rem;
+    opacity: 0.8;
+    &__list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    & a {
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: #fff;
+        border-radius: 50rem;
+        display: block;
+        padding: 0.8rem 1rem;
+        border: 1px solid transparent;
+        transition: all 0.5s;
+        text-wrap: nowrap;
+        cursor: pointer;
+      }
+      &:hover {
+        background-color: #22e39f;
+      }
+    }
+    & .link-logout {
+      & a:link,
+      & a:visited {
+        background-color: #191919;
+        cursor: pointer;
+      }
+      & a:hover .logout-icon {
+        -webkit-animation: shake-horizontal 0.8s
+          cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+          both;
+      }
+    }
+  }
+}

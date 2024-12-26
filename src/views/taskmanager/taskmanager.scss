@@ -1,0 +1,7 @@
+@import "../../components/abstract/variables";
+#taskmanager {
+  min-height: 100vh;
+  & .card {
+    width: 70%;
+  }
+}
