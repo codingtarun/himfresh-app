@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GameBoard } from "./GameBoard";
 import { Player } from "./Player";
 import { StepLog } from "./StepLog";
+import { useNavigate } from "react-router";
 
 const initialGameBoard = [null, null, null, null, null, null, null, null, null];
 const winningCombination = [
@@ -26,6 +27,15 @@ const winningCombination = [
 ];
 
 export const TicTacToe = () => {
+  // Check auth
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
   const [stepLog, setStepLog] = useState([]);
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   const [activePlayer, setActivePlayer] = useState("X");

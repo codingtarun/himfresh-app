@@ -1,8 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./timer.scss";
 import { TimerBoard } from "./TimerBoard";
+import { useNavigate } from "react-router";
 
 export const Timer = () => {
+  // Check auth
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
   const userName = useRef();
 
   const [namesubmitted, setNamesubmitted] = useState(false);

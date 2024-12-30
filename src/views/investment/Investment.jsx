@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const Investment = () => {
+  // Check auth
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
   const [userInput, setUserInput] = useState({
     year: 1,
     plants: 50,

@@ -1,35 +1,69 @@
+import { Link, useNavigate } from "react-router";
 import { Button } from "../../components/button/Button";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
+  const loginLink = "http://127.0.0.1:8000/api/login";
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const navigate = useNavigate();
+  // if user is already logged in then redirect
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/dashboard");
+    }
+  });
+
+  async function login(e) {
+    // prevent default fonr submit action
+    e.preventDefault();
+    // Collect data
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    let result = await fetch(loginLink, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "appliation/vnd.api+json",
+      },
+    });
+
+    result = await result.json();
+    console.log(result);
+    localStorage.setItem("user", JSON.stringify(result));
+    navigate("/dashboard");
+  }
   return (
-    <div className="row d-flex justify-content-center align-items-center min-vh-100 login">
+    <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 login">
       <div className="card" style={{ width: "24rem" }}>
         <div className="card-body">
           <h2>Login</h2>
-          <form action="">
+          <form action="" onSubmit={(e) => login(e)}>
             <div className="mb-3">
-              <label for="exampleFormControlInput1" className="form-label fs-6">
-                Email
+              <label for="email" className="form-label fs-6">
+                Email {email}
               </label>
               <div className="input-group mb-3">
-                <span className="input-group-text" id="basic-addon1">
+                <span className="input-group-text" id="email">
                   <i className="fa-regular fa-envelope text-muted"></i>
                 </span>
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Email"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
+                  aria-label="email"
+                  aria-describedby="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
             <div className="mb-3">
-              <label
-                for="exampleFormControlTextarea1"
-                className="form-label fs-6"
-              >
-                Password
+              <label for="password" className="form-label fs-6">
+                Password {password}
               </label>
               <div className="input-group mb-3">
                 <span className="input-group-text">
@@ -38,7 +72,8 @@ export const Login = () => {
                 <input
                   type="password"
                   className="form-control"
-                  aria-label="Amount (to the nearest dollar)"
+                  aria-label="Password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -58,9 +93,9 @@ export const Login = () => {
           </div>
           <span className="d-block text-center">
             Didn't have an accoount ?
-            <a href="http://" className="text-reset">
-              Sign up
-            </a>
+            <Link to="/register" className="text-reset">
+              Register
+            </Link>
           </span>
         </div>
       </div>

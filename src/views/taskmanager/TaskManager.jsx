@@ -5,8 +5,16 @@ import { TaskList } from "./TaskList";
 import { Navbar } from "./Navbar";
 
 import "./taskmanager.scss";
+import { useNavigate } from "react-router";
 
 export const TaskManger = () => {
+  //check auth
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
+  const navigate = useNavigate();
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
   );

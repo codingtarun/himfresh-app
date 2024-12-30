@@ -6,9 +6,15 @@ import { MobiLinks } from "./MobiLinks";
 import { MobiSearch } from "./MobiSearchBar";
 import "./mobi.scss";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export const Mobi = ({ api_link, title }) => {
+  // Check auth
+  const navigate = useNavigate();
   useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
     document.title = `Mobi | ${title}`;
   });
   const options = {

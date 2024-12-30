@@ -15,6 +15,7 @@ import { Mobi } from "./views/mobi/Mobi";
 import { MobiDetails } from "./views/mobi/MobiDetails";
 import { Default } from "./template/Default";
 import { PageNotFound } from "./views/pagenotfound/PageNotFound";
+import { MobiSearchResult } from "./views/mobi/MobiSearchResult";
 
 function App() {
   return (
@@ -86,6 +87,15 @@ function App() {
           }
         ></Route>
         <Route
+          path="/mobi/movies/search"
+          element={
+            <MobiSearchResult
+              api_link="search/movie?include_adult=false&language=en-US&page=1"
+              title="Search Movies"
+            ></MobiSearchResult>
+          }
+        ></Route>
+        <Route
           path="/mobi/details/:media_type/:id"
           element={<MobiDetails></MobiDetails>}
         ></Route>
@@ -93,6 +103,7 @@ function App() {
           path="*"
           element={<PageNotFound title="Page Not Found"></PageNotFound>}
         ></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
     </Default>
   );

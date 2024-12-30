@@ -1,9 +1,15 @@
 import { useState } from "react";
 import "./menu.scss";
 
-import { Link, NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 export const Menu = () => {
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
   const [showMenu, setShowMenu] = useState(false);
   const menuItems = [
     {
@@ -41,22 +47,27 @@ export const Menu = () => {
             <i class="fa-solid fa-bars"></i>
           )}
         </button>
-        <ul
-          className={`${showMenu ? "show-menu" : "hide-menu"} main-nav__list`}
-        >
-          {menuItems.map((menu) => (
-            <li className="main-nav__list-item">
-              <NavLink to={menu.url} className="main-nav-list-item-link">
-                {menu.title}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        {localStorage.getItem("user") !== null ? (
+          <ul
+            className={`${showMenu ? "show-menu" : "hide-menu"} main-nav__list`}
+          >
+            {menuItems.map((menu) => (
+              <li className="main-nav__list-item">
+                <NavLink to={menu.url} className="main-nav-list-item-link">
+                  {menu.title}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          ""
+        )}
+
         <div className="main-nav__link link-logout">
-          <Link to="/register" className="d-block">
-            Logout{" "}
+          <a href="" onClick={() => logout()}>
+            Logout
             <i className="fa-solid fa-arrow-right logout-icon ms-1 fw-bold"></i>
-          </Link>
+          </a>
         </div>
       </nav>
     </div>

@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col } from "../../components/grid/Col";
 import { Row } from "../../components/grid/Row";
 import { Card } from "../../components/card/Card";
 import { USER_LIST } from "../../data";
+import { useNavigate } from "react-router";
 
 export const Profile = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
   const [heading, setHeading] = useState("Himfresh App");
   function updateHeading(name) {
     setHeading(name);

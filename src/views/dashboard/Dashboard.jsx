@@ -15,6 +15,7 @@ import { Alert } from "../../components/alert/Alert";
 import { Row } from "../../components/grid/Row";
 import "./dashboard.scss";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const productSale = [
   {
@@ -75,7 +76,12 @@ const pieChartDataTwo = [
   { name: "D2", value: 50 },
 ];
 export const Dashboard = ({ ...props }) => {
+  const navigate = useNavigate();
+  // Check auth
   useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
     document.title = `Himfresh | ${props.title}`;
   });
   return (

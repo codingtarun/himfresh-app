@@ -8,7 +8,12 @@ export function User() {
     "http://127.0.0.1:8000/api/user/get-all-admin"
   );
   const fetchUsers = useCallback(async () => {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      header: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/vnd.api+json",
+      },
+    });
     const data = await response.json();
     setUsers(data.data.users);
   }, [url]);
