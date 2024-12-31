@@ -85,80 +85,78 @@ export const Dashboard = ({ ...props }) => {
     document.title = `Himfresh | ${props.title}`;
   });
   return (
-    <div className="container-fluid dashboard py-3">
-      <div className="main-content">
-        <Row>
-          <div className="col-sm-3 border" style={{ height: "300px" }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart width={500} height={400} data={productSale}>
-                <XAxis />
-                <YAxis />
-                <CartesianGrid strokeDasharray="5 5" />
-                <Legend />
-                <Tooltip />
-                <Area type="monotone" dataKey="product1"></Area>
-                <Area type="monotone" dataKey="product2"></Area>
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="col-sm-3 border" style={{ height: "300px" }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart width={400} height={400}>
-                <Pie
-                  data={pieChartDataOne}
-                  dataKey="value"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={60}
-                  fill="#8884d8"
-                />
-                <Pie
-                  data={pieChartDataTwo}
-                  dataKey="value"
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={70}
-                  outerRadius={90}
-                  fill="#82ca9d"
-                  label
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="col-sm-6 border" style={{ height: "300px" }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart width={400} height={400}>
-                <Pie
-                  dataKey="value"
-                  isAnimationActive={false}
-                  data={pieChartDataOne}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  fill="#8884d8"
-                  label
-                />
-                <Pie
-                  dataKey="value"
-                  data={pieChartDataTwo}
-                  cx={500}
-                  cy={200}
-                  innerRadius={40}
-                  outerRadius={80}
-                  fill="#82ca9d"
-                />
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </Row>
-        <Row>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-        </Row>
-      </div>
+    <div className="container-fluid dashboard py-3 main-content">
+      <Row>
+        <div className="col-sm-3 border" style={{ height: "300px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart width={500} height={400} data={productSale}>
+              <XAxis />
+              <YAxis />
+              <CartesianGrid strokeDasharray="5 5" />
+              <Legend />
+              <Tooltip />
+              <Area type="monotone" dataKey="product1"></Area>
+              <Area type="monotone" dataKey="product2"></Area>
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="col-sm-3 border" style={{ height: "300px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={400} height={400}>
+              <Pie
+                data={pieChartDataOne}
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                outerRadius={60}
+                fill="#8884d8"
+              />
+              <Pie
+                data={pieChartDataTwo}
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                innerRadius={70}
+                outerRadius={90}
+                fill="#82ca9d"
+                label
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="col-sm-6 border" style={{ height: "300px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={400} height={400}>
+              <Pie
+                dataKey="value"
+                isAnimationActive={false}
+                data={pieChartDataOne}
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                fill="#8884d8"
+                label
+              />
+              <Pie
+                dataKey="value"
+                data={pieChartDataTwo}
+                cx={500}
+                cy={200}
+                innerRadius={40}
+                outerRadius={80}
+                fill="#82ca9d"
+              />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </Row>
+      <Row>
+        <Alert></Alert>
+        <Alert></Alert>
+        <Alert></Alert>
+        <Alert></Alert>
+      </Row>
     </div>
   );
 };

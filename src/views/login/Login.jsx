@@ -6,6 +6,8 @@ export const Login = () => {
   const loginLink = "http://127.0.0.1:8000/api/login";
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [errorPassword, setErrorPassword] = useState();
+  const [errorEmail, setErrorEmail] = useState();
   const navigate = useNavigate();
   // if user is already logged in then redirect
   useEffect(() => {
@@ -33,9 +35,23 @@ export const Login = () => {
     });
 
     result = await result.json();
-    console.log(result);
-    localStorage.setItem("user", JSON.stringify(result));
-    navigate("/dashboard");
+    if (result.status && result.token) {
+      // If user is found and has a token then access is granted
+      console.log(result);
+      // Store the response to local storage from where we'll access the user info and token.
+      localStorage.setItem("user", JSON.stringify(result));
+      // redirect to the dashboard.
+      navigate("/dashboard");
+    } else {
+      // If status is false store and show errors
+      console.log(result.message);
+      if (result.message.email !== undefined) {
+        setErrorEmail(result.message.email[0]);
+      }
+      if (result.message.password !== undefined) {
+        setErrorPassword(result.message.password[0]);
+      }
+    }
   }
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 login">
@@ -60,6 +76,7 @@ export const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+              <small className="text-danger m-0 p-0">{errorEmail}</small>
             </div>
             <div className="mb-3">
               <label for="password" className="form-label fs-6">
@@ -76,6 +93,7 @@ export const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              <small className="text-danger m-0 p-0">{errorPassword}</small>
             </div>
             <a href="http://" className="d-block text-reset text-end">
               Forgot your password

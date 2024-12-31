@@ -1,23 +1,94 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./user.scss";
 
 export function User() {
-  // Call the API and get data
+  // loading hooks
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [url, setUrl] = useState(
-    "http://127.0.0.1:8000/api/user/get-all-admin"
-  );
+  const [url, setUrl] = useState("http://127.0.0.1:8000/api/user/get-all");
+  const [pageNumber, setPageNumber] = useState(1);
+  /**
+   *
+   * Since we are storing user info & token in local storage , before loading a protected views/components
+   * we'll check if user is set or not.
+   *
+   * Getting data from the local storage.
+   *
+   */
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user?.token;
+
+  /**
+   *
+   * useCallback : A react hook used to memorize a function, i.e it returns a cached version of a function
+   * that doesn't change unless its dependencies changes.
+   *
+   * Why use 'useCallback' hook ?
+   * 1. When we pass a function as a prop to a child component, React creates a new instance of the function
+   * everytime the parent component rerenders.
+   * This can cause unnecessary re-renders of the child component if child depends on that function.
+   * useCallback prevents the creation of a new function instance on every render by caching the function until its dependencies are updated.
+   *
+   * SYNTEX :
+   *
+   * const callBackFunction () =useCallback(
+   *  () => {
+   *        // Our functions
+   *    },
+   *    [dependencies]
+   *  );
+   *
+   */
+
+  // Using a callback hook to cache the function to get the user list.
   const fetchUsers = useCallback(async () => {
-    const response = await fetch(url, {
-      header: {
+    // A async function to fecth data
+    const response = await fetch(`${url}?page=${pageNumber}`, {
+      method: "GET",
+      headers: {
         "Content-Type": "application/vnd.api+json",
-        Accept: "application/vnd.api+json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        Referer: "http://localhost:3000",
       },
     });
+    // Wait for response and store data in data after converting it into JSON.
     const data = await response.json();
-    setUsers(data.data.users);
-  }, [url]);
 
+    //Update the users list using.
+    setUsers(data.data.users);
+    // Dependencies list
+  }, [url, pageNumber]);
+
+  /**
+   * Pagination functions
+   */
+  function previousPage() {
+    let currentPage = pageNumber;
+    setPageNumber(currentPage > 1 ? currentPage - 1 : 1);
+  }
+  function nextPage() {
+    let currentPage = pageNumber;
+    setPageNumber(4 < currentPage < 1 ? currentPage + 1 : 1);
+  }
+
+  /**
+   *
+   * useEffect : A react hook that helps is to run some code after the component is rendered.
+   * Use case :
+   * 1. Fetching data from API.
+   * 2. Setting up event listeners.
+   * 3. Updating document title.
+   * 4. Performing cleanup tasks.
+   *
+   * Think useEffect as a way to run side effect in your React components.
+   *
+   * Key points :
+   * 1. Runs after the component rendring is complete.
+   * 2. We can control when useEffect should run i.e dependencies [].
+   *
+   */
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -87,6 +158,22 @@ export function User() {
           ))}
         </tbody>
       </table>
+      <div className="d-flex justify-content-center align-items-ceter">
+        <div className="btn-group">
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => previousPage()}
+          >
+            <i class="fa-solid fa-backward"></i>
+          </button>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => nextPage()}
+          >
+            <i class="fa-solid fa-forward"></i>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
