@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { Button } from "../../components/button/Button";
 import { useEffect, useState } from "react";
+import { Guest } from "../../template/Guest";
 
 export const Login = () => {
   const loginLink = "http://127.0.0.1:8000/api/login";
@@ -17,9 +18,9 @@ export const Login = () => {
   });
 
   async function login(e) {
-    // prevent default fonr submit action
+    // prevent default action for submit action
     e.preventDefault();
-    // Collect data
+    // collect data
     const data = {
       email: email,
       password: password,
@@ -36,14 +37,14 @@ export const Login = () => {
 
     result = await result.json();
     if (result.status && result.token) {
-      // If user is found and has a token then access is granted
+      // if user is found and has a token then access is granted.
       console.log(result);
-      // Store the response to local storage from where we'll access the user info and token.
+      // store the response to local storage from where we'll access the user info and token.
       localStorage.setItem("user", JSON.stringify(result));
       // redirect to the dashboard.
       navigate("/dashboard");
     } else {
-      // If status is false store and show errors
+      // if status is false store and show errors
       console.log(result.message);
       if (result.message.email !== undefined) {
         setErrorEmail(result.message.email[0]);
@@ -54,7 +55,7 @@ export const Login = () => {
     }
   }
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 login">
+    <Guest>
       <div className="card" style={{ width: "24rem" }}>
         <div className="card-body">
           <h2>Login</h2>
@@ -117,6 +118,6 @@ export const Login = () => {
           </span>
         </div>
       </div>
-    </div>
+    </Guest>
   );
 };

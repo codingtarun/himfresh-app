@@ -1,46 +1,43 @@
 @import "./../abstract/variables";
-
+// main menu styling
 #menu {
-  & .active {
-    background-color: #22e39f;
-  }
-  & .hide-menu {
-    display: none !important;
-    width: 0 !important;
-  }
-  & .show-menu {
-    display: flex !important;
-    width: 100% !important;
-  }
+  // full menu bar styling
   & .main-nav {
+    // menubar toggle button styling
     & .menu__toggle {
+      transform: scale(1.05);
       border: none;
       outline: none;
       color: #fff;
       font-weight: bolder;
       background-color: transparent;
       border-radius: 50%;
-      padding: 0.6rem 1rem;
-      background-color: #191919;
+      padding: 0.8rem 1.2rem;
+      background-color: $clr-black-80;
+      transition: all 0.2s ease;
       cursor: pointer;
       &:hover {
-        background-color: #22e39f;
+        background-color: $clr-black;
+        transform: scale(1);
       }
     }
+    // collapseable menu list styling
     position: fixed;
     bottom: 0.5rem;
     left: 0.5rem;
-    background-color: #4d4d4d; // #222c;
+    background-color: #191919; // #222c;
     border-radius: 50rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
-    padding: 0.5rem 0.8rem;
-    opacity: 0.8;
+    padding: 0.5rem 0.5em;
+    opacity: 0.9;
 
+    // main menu list styling
     &__list {
+      transition: all 2s ease;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -50,9 +47,11 @@
       padding: 0;
       margin: 0;
     }
+    // Menu links styling
     & a {
       &:link,
       &:visited {
+        font-weight: 600;
         text-decoration: none;
         color: #fff;
         border-radius: 50rem;
@@ -65,17 +64,21 @@
         transition: all 0.05s ease-in;
       }
       &:hover {
-        background-color: #22e39f;
+        background-color: #d9d9d91a;
       }
     }
+
+    // Logout button styling
     & .link-logout {
       & a:link,
       & a:visited {
-        background-color: #191919;
+        transform: scale(1.05);
+        background-color: $clr-black-80;
         cursor: pointer;
       }
       & a:hover {
-        background-color: #22e39f;
+        transform: scale(1);
+        background-color: $clr-black;
       }
       & a:hover .logout-icon {
         -webkit-animation: shake-horizontal 0.8s
@@ -84,5 +87,17 @@
           both;
       }
     }
+  }
+  // active menu background color
+  & .active {
+    background-color: #d9d9d91a;
+  }
+  & .hide-menu {
+    display: none !important;
+    width: 0 !important;
+  }
+  & .show-menu {
+    display: flex !important;
+    width: 100% !important;
   }
 }

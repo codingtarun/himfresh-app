@@ -1,3 +1,31 @@
+// Solid Colors
+$clr-black: #000000; // Pure black
+$clr-purple: #6c4bef; // Vibrant purple
+$clr-dark-gray: #121212; // Dark gray
+$clr-light-gray: #dddddd; // Light gray
+$clr-soft-pink: #ffdede; // Soft pink
+$clr-white: #ffffff; // Pure white
+$clr-medium-gray: #222222; // Medium gray
+$clr-dark-purple-gray: #302d3b; // Dark purplish-gray
+$clr-bright-blue: #336cc7; // Bright blue
+$clr-darker-gray: #333333; // Slightly darker gray
+$clr-sky-blue: #3696ea; // Sky blue
+$clr-light-sky-blue: #3898ec; // Light sky blue
+
+// Transparent Colors
+$clr-black-0: rgba(0, 0, 0, 0); // Black with 0% opacity
+$clr-black-40: rgba(0, 0, 0, 0.4); // Black with 40% opacity
+$clr-black-80: rgba(0, 0, 0, 0.8); // Black with 50% opacity
+$clr-gray-9: rgba(217, 217, 217, 0.098); // Light gray with 9.8% opacity
+$clr-gray-10: rgba(217, 217, 217, 0.1); // Light gray with 10% opacity
+$clr-white-0: rgba(255, 255, 255, 0); // White with 0% opacity
+$clr-white-80: rgba(255, 255, 255, 0.8); // White with 80% opacity
+$clr-purple-80: rgba(30, 29, 33, 0.8); // Dark purple-gray with 80% opacity
+$clr-gray-70: rgba(34, 34, 34, 0.7); // Medium gray with 70% opacity
+$clr-gray-80: rgba(34, 34, 34, 0.8); // Medium gray with 80% opacity
+
+// OLD
+
 $clr-bg-100: #f7f6f5;
 $clr-accent-100: #000;
 $clr-fg-100: #fff;

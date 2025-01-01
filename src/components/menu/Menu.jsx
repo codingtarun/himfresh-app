@@ -1,16 +1,14 @@
 import { useState } from "react";
-import "./menu.scss";
-
 import { NavLink, useNavigate } from "react-router";
 
-export const Menu = () => {
-  const navigate = useNavigate();
+import "./menu.scss";
 
-  function logout() {
-    localStorage.removeItem("user");
-    navigate("/login");
-  }
+export const Menu = () => {
+  // Loading Hook
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+
+  // Route list
   const menuItems = [
     {
       title: "Home",
@@ -37,6 +35,13 @@ export const Menu = () => {
       url: "/mobi",
     },
   ];
+
+  // Functions
+  function logout() {
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
+
   return (
     <div id="menu">
       <nav className="main-nav">
@@ -47,24 +52,26 @@ export const Menu = () => {
             <i class="fa-solid fa-bars"></i>
           )}
         </button>
-        {localStorage.getItem("user") !== null ? (
-          <ul
-            className={`${showMenu ? "show-menu" : "hide-menu"} main-nav__list`}
-          >
-            {menuItems.map((menu) => (
-              <li className="main-nav__list-item">
-                <NavLink to={menu.url} className="main-nav-list-item-link">
-                  {menu.title}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ""
-        )}
+        <ul
+          className={`${showMenu ? "show-menu" : "hide-menu"} main-nav__list`}
+        >
+          {menuItems.map((menu) => (
+            <li className="main-nav__list-item">
+              <NavLink to={menu.url} className="main-nav-list-item-link">
+                {menu.title}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
         <div className="main-nav__link link-logout">
-          <a href="" onClick={() => logout()}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              logout();
+            }}
+          >
             Logout
             <i className="fa-solid fa-arrow-right logout-icon ms-1 fw-bold"></i>
           </a>

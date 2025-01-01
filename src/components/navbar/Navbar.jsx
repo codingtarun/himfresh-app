@@ -1,63 +1,86 @@
+import { useState } from "react";
 import "./navbar.scss";
-export const Navbar = () => {
+import { NavLink } from "react-router";
+export const Navbar = ({ theme, setTheme }) => {
   // Get user information from local storage
   const user = JSON.parse(localStorage.getItem("user"));
-  const userPlaceholder = `http://127.0.0.1:8000/storage/images/${user?.message.image}`;
+  // Getting the user image from the API server
+  const userPlaceholder = `http://127.0.0.1:8000/storage/images/${user?.data.image}`;
+  // Using state to toggle card
+  const [userCard, setUserCard] = useState("d-none");
   return (
     <div
-      className="d-flex align-items-center w-100 bg-light border-bottom py-3 px-2"
+      className={`bg-${theme} text-${
+        theme === "dark" ? "light" : "dark"
+      } d-flex navbar align-items-center w-100 border-bottom py-3 px-2`}
       id="navbar"
     >
       <div className="container-fluid d-flex justify-content-between">
-        <div className="logo">
-          <a href="/">Himfresh</a>
+        <div className="navbar__logo d-flex flex-column align-items-center">
+          <NavLink
+            to="/"
+            className="text-reset fw-bold fs-2 text-decoration-none border-bottom border-dark border-3 px-2"
+          >
+            Himfresh
+          </NavLink>
+          <small className="text-muted fw-bold text-uppercase">Dashboard</small>
         </div>
-        <div className="info d-flex justify-content-between align-items-center gap-4">
-          <img
-            src={userPlaceholder}
-            alt="User Placeholder"
-            className="img-fluid rounded-circle"
-            style={{ width: "50px", height: "50px" }}
-          />
-          <div className="datetime d-flex jusitfy-content-center align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary">
-                {user?.message.f_name} {user?.message.l_name}
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+        <div className="navbar__info d-flex justify-content-between align-items-center gap-4">
+          <div
+            className="position-relative"
+            onMouseEnter={() => setUserCard("d-block")}
+            onMouseLeave={() => setUserCard("d-none")}
+          >
+            <img
+              src={userPlaceholder}
+              alt="User Placeholder"
+              className="img-fluid rounded-circle"
+              style={{
+                width: "50px",
+                height: "50px",
+                cursor: "pointer",
+              }}
+            />
+            <div
+              className={`${userCard} position-absolute translate-middle-x border shadow rounded`}
+              style={{ zIndex: "1000", transition: "all 4s ease-in" }}
+            >
+              <div
+                class={`card bg-${theme} text-${
+                  theme === "dark" ? "light" : "dark"
+                }`}
+                style={{ width: "12rem" }}
               >
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Roles & Permissions
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    APIs
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Logout
-                  </a>
-                </li>
-              </ul>
+                <img src={userPlaceholder} class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {user?.data.f_name} {user?.data.l_name}
+                  </h5>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="switchTheme"
+              onClick={() =>
+                setTheme((theme) => (theme === "light" ? "dark" : "light"))
+              }
+            />
+            <label class="form-check-label" for="switchTheme">
+              {theme === "light" ? (
+                <i class="fa-regular fa-sun"></i>
+              ) : (
+                <i class="fa-regular fa-moon"></i>
+              )}
+            </label>
           </div>
         </div>
       </div>
