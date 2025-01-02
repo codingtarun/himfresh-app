@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./navbar.scss";
 import { NavLink } from "react-router";
 export const Navbar = ({ theme, setTheme }) => {
+  console.log(theme, setTheme);
+
   // Get user information from local storage
   const user = JSON.parse(localStorage.getItem("user"));
   // Getting the user image from the API server
@@ -12,7 +14,7 @@ export const Navbar = ({ theme, setTheme }) => {
     <div
       className={`bg-${theme} text-${
         theme === "dark" ? "light" : "dark"
-      } d-flex navbar align-items-center w-100 border-bottom py-3 px-2`}
+      } d-flex navbar align-items-center w-100 border-bottom border-${theme} py-3 px-2`}
       id="navbar"
     >
       <div className="container-fluid d-flex justify-content-between">

@@ -16,17 +16,25 @@ import { MobiDetails } from "./views/mobi/MobiDetails";
 import { Default } from "./template/Default";
 import { PageNotFound } from "./views/pagenotfound/PageNotFound";
 import { MobiSearchResult } from "./views/mobi/MobiSearchResult";
+import { useState } from "react";
 
 function App() {
+  const [theme, setTheme] = useState("light");
   return (
-    <Default>
+    <Default theme={theme} setTheme={setTheme}>
       <Routes>
-        <Route path="/" element={<Dashboard title="Dashboard" />}></Route>
+        <Route
+          path="/"
+          element={<Dashboard title="Dashboard" theme={theme} />}
+        ></Route>
         <Route
           path="/taskmanager"
-          element={<TaskManger title="Taskmanager" />}
+          element={<TaskManger title="Taskmanager" theme={theme} />}
         ></Route>
-        <Route path="/users" element={<User title="Users"></User>}></Route>
+        <Route
+          path="/users"
+          element={<User title="Users" theme={theme}></User>}
+        ></Route>
         <Route
           path="/profile"
           element={<Profile title="Profile"></Profile>}
@@ -103,7 +111,6 @@ function App() {
           path="*"
           element={<PageNotFound title="Page Not Found"></PageNotFound>}
         ></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
     </Default>
   );

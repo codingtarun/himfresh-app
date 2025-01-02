@@ -1,103 +1,80 @@
 @import "./../abstract/variables";
 // main menu styling
-#menu {
-  // full menu bar styling
-  & .main-nav {
-    // menubar toggle button styling
-    & .menu__toggle {
-      transform: scale(1.05);
-      border: none;
-      outline: none;
-      color: #fff;
-      font-weight: bolder;
-      background-color: transparent;
-      border-radius: 50%;
-      padding: 0.8rem 1.2rem;
-      background-color: $clr-black-80;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      &:hover {
-        background-color: $clr-black;
-        transform: scale(1);
-      }
-    }
-    // collapseable menu list styling
-    position: fixed;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    background-color: #191919; // #222c;
-    border-radius: 50rem;
+.menu {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background-color: $clr-black-80;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50rem;
+  cursor: pointer;
+  // Main body
+  &__nav {
     display: flex;
-    flex-direction: row;
+    flex: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  &__list {
+    display: flex;
+    flex: row;
+    list-style: none;
+    gap: 1.6rem;
     justify-content: center;
     align-items: center;
-    gap: 2.5rem;
-    padding: 0.5rem 0.5em;
-    opacity: 0.9;
-
-    // main menu list styling
-    &__list {
-      transition: all 2s ease;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  &__list.hide {
+    margin-left: -600px;
+    opacity: 0;
+    z-index: -100;
+  }
+  &__list.show {
+    margin-left: 0;
+    opacity: 1;
+    z-index: 100;
+  }
+  &__item {
+  }
+  &__link {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50rem;
+    padding: 0.7rem 1rem;
+    &:hover {
+      color: #fff;
+      background-color: #d9d9d91a;
     }
-    // Menu links styling
-    & a {
-      &:link,
-      &:visited {
-        font-weight: 600;
-        text-decoration: none;
-        color: #fff;
-        border-radius: 50rem;
-        display: block;
-        padding: 0.8rem 1rem;
-        border: 1px solid transparent;
-        transition: all 0.5s;
-        text-wrap: nowrap;
-        cursor: pointer;
-        transition: all 0.05s ease-in;
-      }
-      &:hover {
-        background-color: #d9d9d91a;
-      }
-    }
-
-    // Logout button styling
-    & .link-logout {
-      & a:link,
-      & a:visited {
-        transform: scale(1.05);
-        background-color: $clr-black-80;
-        cursor: pointer;
-      }
-      & a:hover {
-        transform: scale(1);
-        background-color: $clr-black;
-      }
-      & a:hover .logout-icon {
-        -webkit-animation: shake-horizontal 0.8s
-          cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-        animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-          both;
-      }
+    &.active {
+      color: #fff;
+      background-color: #d9d9d91a;
     }
   }
-  // active menu background color
-  & .active {
-    background-color: #d9d9d91a;
-  }
-  & .hide-menu {
-    display: none !important;
-    width: 0 !important;
-  }
-  & .show-menu {
-    display: flex !important;
-    width: 100% !important;
+  &__btn {
+    background-color: #191919;
+    outline: none;
+    border: none;
+    color: #fff;
+    padding: 0.7rem 1rem;
+    border-radius: 20rem;
+    font-weight: bold;
+    transform: scale(1);
+    &:hover {
+      background-color: #000;
+      transform: scale(0.95);
+    }
+    &:hover .logout-icon {
+      -webkit-animation: shake-horizontal 0.8s
+        cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+      animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+        both;
+    }
   }
 }

@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Menu } from "../components/menu/Menu";
 import { Navbar } from "../components/navbar/Navbar";
 
-export const Default = (props) => {
-  const [theme, setTheme] = useState("dark");
+export const Default = ({ children, theme, setTheme }) => {
   return (
     <div
       className={`bg-${theme} ${
@@ -11,7 +9,7 @@ export const Default = (props) => {
       } min-vh-100`}
     >
       <Navbar theme={theme} setTheme={setTheme}></Navbar>
-      {props.children}
+      {children}
       <Menu></Menu>
     </div>
   );
