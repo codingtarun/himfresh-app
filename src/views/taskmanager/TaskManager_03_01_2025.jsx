@@ -1,5 +1,4 @@
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import http from "../../http";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import { useNavigate } from "react-router";
 
 import { useCallback, useEffect, useState } from "react";
@@ -41,6 +40,7 @@ export const TaskManger = ({ theme }) => {
   // Loading required hooks
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState([]);
+  const [url, setUrl] = useState("http://127.0.0.1:8000/api/task/get-all");
   const [task, setTask] = useState(null);
 
   // We require toke from local storage to generate a token base request.
@@ -60,36 +60,45 @@ export const TaskManger = ({ theme }) => {
   // Using a callback hook to cache the function to fetch user details
 
   const fetchTasks = useCallback(async () => {
-    // fetching the list using axios
-    http.get("/task/get-all").then((response) => {
-      setTaskList(response.data.data);
+    // fetching the list
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        Referer: "http://localhost:3000",
+      },
     });
-  }, []);
-  // Store function
+    // Wait for response and then store data
+    const data = await response.json();
+    setTaskList(data.data);
+  }, [url]);
+
   async function store(e) {
-    // Prevent default form submit action
     e.preventDefault();
-    // Create collection of data.
     const data = {
       title: task,
     };
 
-    // Post data to server using axios
-    http.post("/task/store", data).then((response) => {
-      if (response.data.status) {
-        setTask("");
-        fetchTasks();
-      } else {
-        console.log(response.data.message);
-      }
+    let result = await fetch("http://127.0.0.1:8000/api/task/store", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        Referer: "http://localhost:3000",
+      },
     });
+
+    result = await result.json();
+    console.log(result);
+
+    setTask("");
+    fetchTasks();
   }
-  //Edit function
-  function edit(taskTitle) {
-    setTask(taskTitle);
-  }
-  //Update function
-  function update() {}
+
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
@@ -165,36 +174,21 @@ export const TaskManger = ({ theme }) => {
             }`}
           >
             <div class="card-body">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Options</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {taskList.map((task) => (
-                    <tr key={task.id}>
-                      <td>{task.id}</td>
-                      <td>{task.title}</td>
-                      <td>
-                        <div className="btn-group btn-sm">
-                          <button
-                            className="btn btn-sm btn-outline-secondary"
-                            onClick={() => edit(task.title)}
-                          >
-                            <i class="fa-solid fa-pen-to-square"></i>
-                          </button>
-                          <button className="btn btn-sm btn-outline-danger">
-                            <i class="fa-solid fa-trash"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <ul class="list-group">
+                {taskList.map((task) => (
+                  <li class="list-group-item mb-2 d-flex justify-content-between">
+                    <p>{task.title}</p>
+                    <div className="btn-group btn-sm">
+                      <button className="btn btn-sm btn-outline-secondary">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button className="btn btn-sm btn-outline-danger">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </Col>

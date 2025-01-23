@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router";
+import { useState } from "react";
+
 import { Login } from "./views/login/Login";
 import { Profile } from "./views/profile/Profile";
 import { Register } from "./views/register/Register";
@@ -9,14 +11,13 @@ import { ProjectManager } from "./views/projectmanager/ProjectManager";
 import { Timer } from "./views/timer/Timer";
 import { User } from "./views/user/User";
 import { TaskManger } from "./views/taskmanager/TaskManager";
-
-import "./sass/App.scss";
 import { Mobi } from "./views/mobi/Mobi";
 import { MobiDetails } from "./views/mobi/MobiDetails";
 import { Default } from "./template/Default";
 import { PageNotFound } from "./views/pagenotfound/PageNotFound";
 import { MobiSearchResult } from "./views/mobi/MobiSearchResult";
-import { useState } from "react";
+
+import "./sass/App.scss";
 
 function App() {
   const [theme, setTheme] = useState("light");
